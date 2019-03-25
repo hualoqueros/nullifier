@@ -13,3 +13,13 @@ if (args["decode"] !== undefined){
                     }).decode()
     console.log('\x1b[36m%s\x1b[32m%s\x1b[0m', "OUTPUT => ", hasil);
 }
+
+if (args["encode"] !== undefined) {
+    var message = args["encode"]
+
+    console.log('\x1b[36m%s\x1b[32m%s\x1b[0m', "INPUT => ", message);
+    var hasil = new Nullifier({
+                        message: message,
+                    }).encode()
+    console.log('\x1b[36m%s\x1b[32m%s\x1b[0m', "OUTPUT => ", hasil);
+}
