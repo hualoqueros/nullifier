@@ -48,6 +48,29 @@ class Nullifier{
         this.output = newMsg
         return this.output;
     }
+
+    /**
+     * Encode the message
+     */
+    encode() {
+        var msg = this.message
+
+        const regex      = /^(.*\s)*(([A-Z]{2,3}(?:-[0-9]+){3}))((\s)+.*)?$/
+        const txNumRegex = /([A-Z]{2,3})(?:-[0-9]+){3}/g
+        var res 		 = new RegExp(regex,'g').exec(message)
+        var encodedMsg   = message
+        console.log("REGEX RES: ", res)
+        
+        if (res !== null) {
+            var encodedTxNum = "[" + res[2].replace('-','=') + "]"
+            encodedMsg = message.replace(txNumRegex, encodedTxNum)
+            console.log("Encoded Tx: ", encodedTxNum)
+    
+        }
+
+        this.output = encodedMsg
+        return this.output;
+    }
     
 }
 
