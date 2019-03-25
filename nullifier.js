@@ -7,7 +7,6 @@ const Constant = require('./constants');
 class Nullifier{
 
     constructor(data) {
-        console.log(data)
         this.message    = data.message
         this.output     = {}
     }
