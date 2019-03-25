@@ -15,5 +15,8 @@
     "decoder"
   ],
   "author": "samudra.arenza@gmail.com",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "minimist": "^1.2.0"
+  }
 }

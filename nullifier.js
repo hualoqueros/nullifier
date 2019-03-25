@@ -8,6 +8,7 @@ class Nullifier{
 
     constructor(data) {
         this.message    = data.message
+        this.pov        = data.pov || "buyer"
         this.output     = {}
     }
 
@@ -15,7 +16,8 @@ class Nullifier{
      * Decode the Message
      * @param {String} pov 
      */
-    decode(pov="buyer"){
+    decode(){
+        var pov     = this.pov
         var msg     = this.message
         var newMsg 	= msg
         var res     = new RegExp(/\[([^}]*)\]/,'gm').exec(msg)
@@ -26,7 +28,7 @@ class Nullifier{
             var objValue 	= arrayCode[1]
             switch(obj){
                 case Constant.IMG:
-                    var newObj = "<br/><img src="+objValue+" width='100'/>"
+                    var newObj = "<img src='" + Constant.LICH_URL + objValue+"' width='100'/>"
                     newMsg = msg.replace(res[0],newObj)
                     break;
                 case Constant.PDF:
@@ -40,7 +42,7 @@ class Nullifier{
                     if (pov=="seller"){
                         url = "https://www.tokob2b.com/seller/"
                     }
-                    var newObj = "<a href='"+url+"'>"+obj+" "+objValue+"</a>"
+                    var newObj = "<a href='"+url+"'>"+obj+"-"+objValue+"</a>"
                     newMsg = msg.replace(res[0],newObj)
                     break;
             }

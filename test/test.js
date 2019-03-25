@@ -1,6 +1,15 @@
+const args = require('minimist')(process.argv.slice(2))
+
 var Nullifier = require("../nullifier")
 
-var message = 'Berikut RFQ nya [RFQ=1]'
-var hasil = new Nullifier({message: message})
-                .decode("seller")
-console.log(hasil)
+let  = args["pov"] || "buyer"
+
+if (args["decode"] !== undefined){
+    var message = args["decode"]
+    console.log('\x1b[36m%s\x1b[32m%s\x1b[0m', "INPUT => ", message);
+    var hasil = new Nullifier({
+                        message: message,
+                        pov: args["pov"]
+                    }).decode()
+    console.log('\x1b[36m%s\x1b[32m%s\x1b[0m', "OUTPUT => ", hasil);
+}
