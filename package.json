@@ -1,19 +1,18 @@
 {
-  "name": "maskinc",
+  "name": "nullifier",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hualoqueros/maskinc.git"
+    "url": "git+https://github.com/hualoqueros/nullifier.git"
   },
   "version": "1.0.1",
-  "description": "Masking json with aliasing you key",
+  "description": "Encoder/Decoder for Mbiz Chat",
   "main": "index.js",
   "scripts": {
     "test": "node test/test.js"
   },
   "keywords": [
-    "json",
-    "masking",
-    "json-maskin"
+    "encoder",
+    "decoder"
   ],
   "author": "samudra.arenza@gmail.com",
   "license": "ISC"
