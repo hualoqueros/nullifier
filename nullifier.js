@@ -57,14 +57,41 @@ class Nullifier{
     encode() {
         var msg = this.message
 
-        const regex      = /^(.*\s)*(([A-Z]{2,3}(?:-[0-9]+){3}))((\s)+.*)?$/
-        var res 		 = new RegExp(regex,'g').exec(msg)
-        var encodedMsg   = msg
+        const regexTransaction   = /^(.*\s)*(([A-Z]{2,3}(?:-[0-9]+){3}))((\s)+.*)?$/
+        var resTransaction		 = new RegExp(regexTransaction,'g').exec(msg)
+        var encodedMsg           = msg
         
-        if (res !== null) {
-            var encodedTxNum = "[" + res[2].replace('-','=') + "]"
-            encodedMsg = msg.replace(res[2], encodedTxNum)
+        if (resTransaction !== null) {
+            var encodedTxNum = "[" + resTransaction[2].replace('-','=') + "]"
+            encodedMsg = msg.replace(resTransaction[2], encodedTxNum)
     
+        } else {
+            const regexFile          = /\b(https?:\/\/)?((img|assets)\.mbizmarket\.co\.id)(\/[a-zA-Z0-9-_\/]+)(\.(jpg|jpeg|png|pdf|xlsx?))\b/
+            var resFile              = new RegExp(regexFile, 'g').exec(msg)
+
+            if (resFile !== null) {
+                var encodedFilePath
+
+                switch(resFile[6]) {
+                    case "jpg":
+                    case "jpeg":
+                    case "png":
+                    case "gif":
+                        encodedFilePath = "[IMG=" + resFile[0] +"]"
+                        break
+
+                    case "pdf":
+                        encodedFilePath = "[PDF=" + resFile[0] +"]"
+                        break
+
+                    case "xls":
+                    case "xlsx":
+                        encodedFilePath = "[XLS=" + resFile[0] +"]"
+                        break
+                }
+
+                encodedMsg = msg.replace(resFile[0], encodedFilePath)
+            }
         }
 
         this.output = encodedMsg
